@@ -1,9 +1,11 @@
 package com.student_management.rest_api_student.Entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Student {
@@ -13,16 +15,18 @@ public class Student {
     private int id;
     private int rollno;
     private String name;
-    private String city;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Info info;
 
     public Student() {
     }
 
-    public Student(int id, int rollno, String name, String city) {
+    public Student(int id, int rollno, String name, Info info) {
         this.id = id;
         this.rollno = rollno;
         this.name = name;
-        this.city = city;
+        this.info = info;
     }
 
     public int getId() {
@@ -49,17 +53,17 @@ public class Student {
         this.name = name;
     }
 
-    public String getCity() {
-        return city;
+    public Info getInfo() {
+        return info;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setInfo(Info info) {
+        this.info = info;
     }
 
     @Override
     public String toString() {
-        return "Student [id=" + id + ", rollno=" + rollno + ", name=" + name + ", city=" + city + "]";
+        return "Student [id=" + id + ", rollno=" + rollno + ", name=" + name + ", info=" + info + "]";
     }
 
 }
