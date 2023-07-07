@@ -16,6 +16,7 @@ public class Student {
     private int rollno;
     private String name;
 
+    // Unidirectional Mapping (Student---> Info)
     @OneToOne(cascade = CascadeType.ALL)
     private Info info;
 
